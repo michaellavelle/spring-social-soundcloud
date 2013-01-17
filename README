@@ -72,7 +72,7 @@ your checkout) or add the following repository to your project's pom:
 Then simply add the following dependency to your project's pom:
 
       <dependency>
-         <groupId>org.springframework.social<groupId>
+         <groupId>org.springframework.social</groupId>
          <artifactId>spring-social-soundcloud</artifactId>
          <version>1.0.1-SNAPSHOT</version>
      </dependency>
