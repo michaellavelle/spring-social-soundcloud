@@ -22,6 +22,7 @@ public class Playlist  {
 	private String id;
 	private String title;
 	private String permalinkUrl;
+	private String description;
 	private List<Track> tracks;
 
 	public void setTitle(String title) {
@@ -54,8 +55,12 @@ public class Playlist  {
 	public String getPermalinkUrl() {
 		return permalinkUrl;
 	}
-	
-	
-	
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
