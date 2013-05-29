@@ -21,8 +21,10 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.social.soundcloud.api.Playlist;
 import org.springframework.social.soundcloud.api.Track;
 import org.springframework.social.soundcloud.api.TracksOperations;
+import org.springframework.social.soundcloud.api.impl.json.PlaylistList;
 import org.springframework.social.soundcloud.api.impl.json.TrackList;
 import org.springframework.web.client.RestTemplate;
 
@@ -49,6 +51,23 @@ public class TracksTemplate extends AbstractSoundCloudResourceOperations impleme
 	@Override
 	protected String getApiResourceBaseUrl() {
 		return getApiBaseUrl() + "/tracks";
+	}
+	
+	@Override
+	public Track getTrack(String trackId) {
+		 return restTemplate.getForObject(getApiResourceUrl("/" + trackId), Track.class);
+	}
+
+	@Override
+	public Page<Playlist> getTrackPlaylists(String trackId,Pageable pageable) {
+		 List<Playlist> playlists = restTemplate.getForObject(getApiResourceUrl("/" + trackId + "/playlists",pageable), PlaylistList.class);
+		 return new PageImpl<Playlist>(playlists,pageable,playlists.size());
+
+	}
+
+	@Override
+	public Page<Playlist> getTrackPlaylists(String trackId) {
+		return getTrackPlaylists(trackId,null);
 	}
 
 

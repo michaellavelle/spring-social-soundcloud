@@ -22,5 +22,7 @@ public interface TracksOperations {
 	
 	public Page<Track> search(String query);
 	public Page<Track> search(String query,Pageable pageable);
-
+	public Track getTrack(String trackId);
+	public Page<Playlist> getTrackPlaylists(String trackId);
+	public Page<Playlist> getTrackPlaylists(String trackId,Pageable pageable);
 }

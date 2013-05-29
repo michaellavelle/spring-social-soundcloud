@@ -26,6 +26,8 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.social.ResourceNotFoundException;
 
 public class TrackTemplateTest extends AbstractSoundCloudApiTest {
 
@@ -71,6 +73,67 @@ public class TrackTemplateTest extends AbstractSoundCloudApiTest {
 		List<Track> tracks = tracksPage.getContent();
 		assertNotNull(tracks);
 		assertEquals(0,tracks.size());
+	}
+	
+	@Test
+	public void getTrackPlaylists()
+	{
+		
+		mockUnauthorizedServer
+		.expect(requestTo("https://api.soundcloud.com/tracks/3252916/playlists?client_id=someApiKey"))
+		.andExpect(method(GET))
+		.andRespond(
+				withResponse(jsonResource("testdata/playlists"),
+						responseHeaders));
+
+		Page<Playlist> playlistsPage = unauthorizedSoundCloud.tracksOperations().getTrackPlaylists("3252916");
+		assertEquals(0,playlistsPage.getNumber());
+		assertEquals(1,playlistsPage.getNumberOfElements());
+
+		List<Playlist> playlists = playlistsPage.getContent();
+		assertNotNull(playlists);
+		assertEquals(1,playlists.size());
+		Playlist firstPlaylist = playlists.get(0);
+		assertEquals("My Test Playlist",firstPlaylist.getTitle());
+		assertEquals("http://soundcloud.com/michaellavelle/sets/my-test-playlist",firstPlaylist.getPermalinkUrl());
+		assertEquals("2119912",firstPlaylist.getId());
+	
+	}
+
+	@Test
+	public void getTrack()
+	{
+		
+		mockUnauthorizedServer
+		.expect(requestTo("https://api.soundcloud.com/tracks/3252916?client_id=someApiKey"))
+		.andExpect(method(GET))
+		.andRespond(
+				withResponse(jsonResource("testdata/track"),
+						responseHeaders));
+
+		Track track = unauthorizedSoundCloud.tracksOperations().getTrack("3252916");
+	
+		assertNotNull(track);
+		assertEquals("Obsessions (Monsieur Adi Remix)",track.getTitle());
+		assertEquals("http://soundcloud.com/bangnmash/obsessions-monsieur-adi-remix",track.getPermalinkUrl());
+		assertEquals("3252916",track.getId());
+	
+	}
+	
+	@Test(expected = ResourceNotFoundException.class)
+	public void getTrack_NotFound()
+	{
+		
+		mockUnauthorizedServer
+		.expect(requestTo("https://api.soundcloud.com/tracks/3252916a?client_id=someApiKey"))
+		.andExpect(method(GET))
+		.andRespond(
+				
+				withResponse(jsonResource("testdata/notfound"),
+						responseHeaders,HttpStatus.NOT_FOUND,"404 - Not Found"));
+
+		unauthorizedSoundCloud.tracksOperations().getTrack("3252916a");
+	
 	}
 	
 }
