@@ -30,6 +30,7 @@ import org.springframework.social.soundcloud.api.Track;
  * directly annotating the model classes themselves.
  * @author Michael Lavelle
  */
+@SuppressWarnings("serial")
 public class SoundCloudModule extends SimpleModule {
 
 	public SoundCloudModule() {

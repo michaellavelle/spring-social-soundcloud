@@ -78,11 +78,11 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 		 List<Track> tracks = restTemplate.getForObject(getApiResourceUrl("/favorites",pageable), TrackList.class);	 
 		 if (pageable == null)
 		 {
-			 return new PageImpl<Track>(tracks,new PageRequest(0,50),soundCloudProfile.getFavoritesCount());
+			 return new PageImpl<Track>(tracks,new PageRequest(0,50),soundCloudProfile.getPublic_favorites_count());
 		 }
 		 else
 		 {
-			 return new PageImpl<Track>(tracks,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getFavoritesCount());
+			 return new PageImpl<Track>(tracks,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getPublic_favorites_count());
 		 }
 		 
 	}
@@ -100,7 +100,7 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 		 }
 		 else
 		 {
-			 return new PageImpl<SoundCloudProfile>(profiles,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getFavoritesCount());
+			 return new PageImpl<SoundCloudProfile>(profiles,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getPublic_favorites_count());
 		 }
 		 
 	}
@@ -117,11 +117,11 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 		 List<Track> tracks =  restTemplate.getForObject(getApiResourceUrl("/tracks",pageable), TrackList.class);	
 		 if (pageable == null)
 		 {
-			 return new PageImpl<Track>(tracks,new PageRequest(0,50),soundCloudProfile.getTrackCount());
+			 return new PageImpl<Track>(tracks,new PageRequest(0,50),soundCloudProfile.getTrack_count());
 		 }
 		 else
 		 {
-			 return new PageImpl<Track>(tracks,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getTrackCount());
+			 return new PageImpl<Track>(tracks,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getTrack_count());
 		 }
 		 
 		 
@@ -141,11 +141,11 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 		 List<Playlist> playlists =  restTemplate.getForObject(getApiResourceUrl("/playlists",pageable), PlaylistList.class);	
 		 if (pageable == null)
 		 {
-			 return new PageImpl<Playlist>(playlists,new PageRequest(0,50),soundCloudProfile.getPlaylistCount());
+			 return new PageImpl<Playlist>(playlists,new PageRequest(0,50),soundCloudProfile.getPlaylist_count());
 		 }
 		 else
 		 {
-			 return new PageImpl<Playlist>(playlists,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getPlaylistCount());
+			 return new PageImpl<Playlist>(playlists,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getPlaylist_count());
 		 }
 		 
 		 
