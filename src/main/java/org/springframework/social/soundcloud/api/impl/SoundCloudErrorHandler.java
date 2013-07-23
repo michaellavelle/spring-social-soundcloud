@@ -25,10 +25,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.InternalServerErrorException;
@@ -114,35 +114,35 @@ class SoundCloudErrorHandler extends DefaultResponseErrorHandler {
 		if (statusCode == HttpStatus.OK) {
 			
 		} else if (statusCode == HttpStatus.BAD_REQUEST) {
-				throw new ResourceNotFoundException(message);
+				throw new ResourceNotFoundException("soundcloud", message);
 
 		}
 		else if (statusCode == HttpStatus.NOT_FOUND) {
-			throw new ResourceNotFoundException(message);
+			throw new ResourceNotFoundException("soundcloud", message);
 
 		}
 		else if (statusCode == HttpStatus.UNAUTHORIZED) {
 			if (isMessageStartsWithText(messages,"invalid_token")) {
 				handleInvalidAccessToken(message);
 			}
-			throw new NotAuthorizedException(message);
+			throw new NotAuthorizedException("soundcloud", message);
 		} else if (statusCode == HttpStatus.FORBIDDEN) {
 			
-				throw new OperationNotPermittedException(message);
+				throw new OperationNotPermittedException("soundcloud", message);
 		} else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR) {
-				throw new InternalServerErrorException(message);
+				throw new InternalServerErrorException("soundcloud", message);
 		}
 		else if (statusCode == HttpStatus.SERVICE_UNAVAILABLE) {
-			throw new ServerDownException(message);
+			throw new ServerDownException("soundcloud", message);
 	}
 	}
 
 	private void handleInvalidAccessToken(String message) {
 		if (message.contains("invalid_token")) {
-			throw new InvalidAuthorizationException("An invalid token was supplied");
+			throw new InvalidAuthorizationException("soundcloud", "An invalid token was supplied");
 		} 
 		 else {
-			 throw new InvalidAuthorizationException(message);				
+			 throw new InvalidAuthorizationException("soundcloud", message);				
 		}
 	}
 
@@ -152,9 +152,9 @@ class SoundCloudErrorHandler extends DefaultResponseErrorHandler {
 		} catch (Exception e) {
 			if (errorDetails != null) {
 				String m = "";
-				throw new UncategorizedApiException(m, e);
+				throw new UncategorizedApiException("soundcloud", m, e);
 			} else {
-				throw new UncategorizedApiException("No error details from SoundCloud", e);
+				throw new UncategorizedApiException("soundcloud", "No error details from SoundCloud", e);
 			}
 		}
 	}

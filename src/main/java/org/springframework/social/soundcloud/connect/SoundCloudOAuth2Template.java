@@ -40,13 +40,15 @@ public class SoundCloudOAuth2Template extends OAuth2Template {
 		this(clientId, clientSecret,null);
 		}
 
+	/*
 	@Override
 	protected AccessGrant createAccessGrant(String accessToken, String scope,
 			String refreshToken, Integer expiresIn, Map<String, Object> response) {
 		return super.createAccessGrant(accessToken, scope, refreshToken, expiresIn,
 				response);
 	}
-
+	*/
+	
 	@Override
 	public String buildAuthenticateUrl(GrantType grantType,
 			OAuth2Parameters parameters) {
