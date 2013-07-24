@@ -16,8 +16,8 @@
 package org.springframework.social.soundcloud.api.impl.json;
 
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.social.soundcloud.api.Activity;
 import org.springframework.social.soundcloud.api.Origin;
 import org.springframework.social.soundcloud.api.Playlist;
@@ -30,10 +30,11 @@ import org.springframework.social.soundcloud.api.Track;
  * directly annotating the model classes themselves.
  * @author Michael Lavelle
  */
+@SuppressWarnings("serial")
 public class SoundCloudModule extends SimpleModule {
 
 	public SoundCloudModule() {
-		super("SoundCloudModule", new Version(1, 0, 0, null));
+		super("SoundCloudModule", new Version(1, 0, 0, null, null, null));
 	}
 	
 	@Override

@@ -19,9 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
@@ -41,17 +42,13 @@ import org.springframework.social.soundcloud.api.impl.xml.XmlPlaylistUpdate;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.web.client.RestTemplate;
 
-public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements
-		SoundCloud {
+public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements SoundCloud {
 
 	private MeOperations meOperations;
 	private UsersOperations usersOperations;
 	private ResolveOperations resolveOperations;
 	private TracksOperations tracksOperations;
 	private PlaylistsOperations playlistsOperations;
-
- 
-
 
 	private ObjectMapper objectMapper;
 	
@@ -163,8 +160,8 @@ public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements
 				.getMessageConverters();
 		for (HttpMessageConverter<?> converter : converters) {
 			if (converter instanceof MappingJacksonHttpMessageConverter) {
-				MappingJacksonHttpMessageConverter jsonConverter = (MappingJacksonHttpMessageConverter) converter;
-				jsonConverter.setObjectMapper(objectMapper);
+				MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
+				jsonConverter.setObjectMapper(objectMapper);//  .setObjectMapper(objectMapper);
 			}
 		}
 	}
