@@ -28,6 +28,8 @@ public class Track extends TrackReference {
 	private String description;
 	private long duration;
 	private String genre;
+    private boolean streamable;
+    private boolean downloadable;
 
 	public Track(String permalinkUrl,String title,String id)
 	{
@@ -123,4 +125,19 @@ public class Track extends TrackReference {
 		return "http://api.soundcloud.com/tracks/" + getId() + "/stream"; 
 	}
 
+  public boolean isStreamable() {
+    return streamable;
+  }
+
+  public void setStreamable(boolean streamable) {
+    this.streamable = streamable;
+  }
+
+  public boolean isDownloadable() {
+    return downloadable;
+  }
+
+  public void setDownloadable(boolean downloadable) {
+    this.downloadable = downloadable;
+  }
 }

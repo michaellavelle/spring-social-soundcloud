@@ -123,6 +123,7 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-test</artifactId>
 			<version>${org.springframework.social-test.version}</version>
+			<scope>test</scope>
 		</dependency>
 		
 		<!-- the core, which includes Streaming API, shared low-level abstractions (but NOT data-binding) -->
