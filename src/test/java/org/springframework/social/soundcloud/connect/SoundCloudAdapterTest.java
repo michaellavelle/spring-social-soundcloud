@@ -33,12 +33,13 @@ public class SoundCloudAdapterTest {
 	private SoundCloudAdapter apiAdapter = new SoundCloudAdapter();
 	
 	private SoundCloud soundCloud = Mockito.mock(SoundCloud.class);
+
 	
 	@Test
 	public void fetchProfileForFirstNameLastName() {		
 		MeOperations userOperations = Mockito.mock(MeOperations.class);
 		Mockito.when(soundCloud.meOperations()).thenReturn(userOperations);
-		Mockito.when(userOperations.getUserProfile()).thenReturn(new SoundCloudProfile("12345678", "michaellavelle", "http://a1.sndcdn.com/images/default_avatar_large.png?8460df1","http://soundcloud.com/michaellavelle","Michael Lavelle","https://api.soundcloud.com/users/7031365","London"));
+		Mockito.when(userOperations.getUserProfile()).thenReturn(createTestSoundCloudProfile("michaellavelle","Michael Lavelle"));
 		UserProfile profile = apiAdapter.fetchUserProfile(soundCloud);
 		assertEquals("Michael Lavelle", profile.getName());
 		assertEquals("Michael", profile.getFirstName());
@@ -51,7 +52,7 @@ public class SoundCloudAdapterTest {
 	public void fetchProfileForOnlyFirstName() {		
 		MeOperations userOperations = Mockito.mock(MeOperations.class);
 		Mockito.when(soundCloud.meOperations()).thenReturn(userOperations);
-		Mockito.when(userOperations.getUserProfile()).thenReturn(new SoundCloudProfile("01248", "mattslip", "http://a1.sndcdn.com/images/default_avatar_large.png?8460df1","http://soundcloud.com/mattslip","mattslip","https://api.soundcloud.com/users/3510549","London"));
+		Mockito.when(userOperations.getUserProfile()).thenReturn(createTestSoundCloudProfile("mattslip","mattslip"));
 		UserProfile profile = apiAdapter.fetchUserProfile(soundCloud);
 		assertEquals("mattslip", profile.getName());
 		assertEquals("mattslip", profile.getFirstName());
@@ -65,13 +66,28 @@ public class SoundCloudAdapterTest {
 	public void setConnectionValues() {		
 		MeOperations meOperations = Mockito.mock(MeOperations.class);
 		Mockito.when(soundCloud.meOperations()).thenReturn(meOperations);
-		Mockito.when(meOperations.getUserProfile()).thenReturn(new SoundCloudProfile("12345678", "michaellavelle", "http://a1.sndcdn.com/images/default_avatar_large.png?8460df1","http://soundcloud.com/michaellavelle","Michael Lavelle","https://api.soundcloud.com/users/7031365","London"));
+		Mockito.when(meOperations.getUserProfile()).thenReturn(createTestSoundCloudProfile("michaellavelle","Michael Lavelle"));
 		TestConnectionValues connectionValues = new TestConnectionValues();
 		apiAdapter.setConnectionValues(soundCloud, connectionValues);
 		assertEquals("michaellavelle", connectionValues.getDisplayName());
 		assertEquals("http://a1.sndcdn.com/images/default_avatar_large.png?8460df1", connectionValues.getImageUrl());
 		assertEquals("http://soundcloud.com/michaellavelle", connectionValues.getProfileUrl());
 		assertEquals("12345678", connectionValues.getProviderUserId());
+	}
+	
+	
+	private SoundCloudProfile createTestSoundCloudProfile(String userName,String fullName)
+	{
+		SoundCloudProfile soundCloudProfile = new SoundCloudProfile();
+		soundCloudProfile.setId("12345678");
+		soundCloudProfile.setUsername(userName);
+		soundCloudProfile.setAvatar_url("http://a1.sndcdn.com/images/default_avatar_large.png?8460df1");
+		soundCloudProfile.setPermalink_url("http://soundcloud.com/michaellavelle");
+		soundCloudProfile.setFull_name(fullName);
+		soundCloudProfile.setUri("https://api.soundcloud.com/users/7031365");
+		soundCloudProfile.setCity("London");
+
+		return soundCloudProfile;
 	}
 
 	private static class TestConnectionValues implements ConnectionValues {
@@ -112,6 +128,7 @@ public class SoundCloudAdapterTest {
 		public void setProviderUserId(String providerUserId) {
 			this.providerUserId = providerUserId;
 		}
-		
+	
 	}
+
 }

@@ -42,7 +42,8 @@ import org.springframework.social.soundcloud.api.impl.xml.XmlPlaylistUpdate;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.web.client.RestTemplate;
 
-public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements SoundCloud {
+public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements
+		SoundCloud {
 
 	private MeOperations meOperations;
 	private UsersOperations usersOperations;
@@ -51,14 +52,11 @@ public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements Soun
 	private PlaylistsOperations playlistsOperations;
 
 	private ObjectMapper objectMapper;
-	
-	
-	
+
 	@Override
 	protected OAuth2Version getOAuth2Version() {
 		return OAuth2Version.DRAFT_10;
 	}
-
 
 	/**
 	 * Create a new instance of SoundCloudTemplate. This constructor creates a
@@ -70,7 +68,7 @@ public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements Soun
 	 * authentication will throw {@link NotAuthorizedException}.
 	 */
 	public SoundCloudTemplate(String clientId) {
-		initialize(clientId,null);
+		initialize(clientId, null);
 	}
 
 	/**
@@ -81,40 +79,41 @@ public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements Soun
 	 *            An access token given by SoundCloud after a successful OAuth 2
 	 *            authentication
 	 */
-	public SoundCloudTemplate(String clientId,String accessToken) {
+	public SoundCloudTemplate(String clientId, String accessToken) {
 		super(accessToken);
-		initialize(clientId,accessToken);
+		initialize(clientId, accessToken);
 	}
-	
-	
+
 	@Override
 	protected List<HttpMessageConverter<?>> getMessageConverters() {
-	List<HttpMessageConverter<?>> messageConverters = super.getMessageConverters();
-	messageConverters.add(new ByteArrayHttpMessageConverter());
-	XStreamMarshaller marshaller = new XStreamMarshaller();
-	Map<Class<?>,String> implicitCollections = new HashMap<Class<?>,String>();
-	implicitCollections.put(TrackArray.class, "tracks");
-	marshaller.setImplicitCollections(implicitCollections);
-	
-	//marshaller.setConverters(converterMatchers);
-	Map<String,Object> aliases = new HashMap<String,Object>();
-	aliases.put("playlist", XmlPlaylistUpdate.class.getName());
-	//aliases.put("playlist", PlaylistUpdate.class.getName());
+		List<HttpMessageConverter<?>> messageConverters = super
+				.getMessageConverters();
+		messageConverters.add(new ByteArrayHttpMessageConverter());
+		XStreamMarshaller marshaller = new XStreamMarshaller();
+		Map<Class<?>, String> implicitCollections = new HashMap<Class<?>, String>();
+		implicitCollections.put(TrackArray.class, "tracks");
+		marshaller.setImplicitCollections(implicitCollections);
 
-	aliases.put("track", TrackReference.class.getName());
+		// marshaller.setConverters(converterMatchers);
+		Map<String, Object> aliases = new HashMap<String, Object>();
+		aliases.put("playlist", XmlPlaylistUpdate.class.getName());
+		// aliases.put("playlist", PlaylistUpdate.class.getName());
 
-	Map<String,Class<?>> useAttributeFor = new HashMap<String,Class<?>>();
-	useAttributeFor.put("type",String.class);
+		aliases.put("track", TrackReference.class.getName());
 
-	try {
-		marshaller.setAliases(aliases);
-		marshaller.setUseAttributeFor(useAttributeFor);
-	} catch (ClassNotFoundException e) {
-		throw new RuntimeException(e);
-	}
+		Map<String, Class<?>> useAttributeFor = new HashMap<String, Class<?>>();
+		useAttributeFor.put("type", String.class);
 
-	messageConverters.add(new MarshallingHttpMessageConverter(marshaller,marshaller));
-	return messageConverters;
+		try {
+			marshaller.setAliases(aliases);
+			marshaller.setUseAttributeFor(useAttributeFor);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+
+		messageConverters.add(new MarshallingHttpMessageConverter(marshaller,
+				marshaller));
+		return messageConverters;
 	}
 
 	@Override
@@ -122,70 +121,62 @@ public class SoundCloudTemplate extends AbstractOAuth2ApiBinding implements Soun
 		return meOperations;
 	}
 
-	private void initSubApis(String clientId,String accessToken) {
-		usersOperations = new UsersTemplate(clientId,getRestTemplate(),isAuthorized());
-		meOperations = new MeTemplate(getRestTemplate(),isAuthorized());
-		resolveOperations = new ResolveTemplate(clientId,getRestTemplate(),isAuthorized());
-		tracksOperations = new TracksTemplate(clientId,getRestTemplate(),isAuthorized());
-		playlistsOperations = new PlaylistsTemplate(clientId,getRestTemplate(),isAuthorized(),resolveOperations);
-
-
+	private void initSubApis(String clientId, String accessToken) {
+		usersOperations = new UsersTemplate(clientId, getRestTemplate(),
+				isAuthorized());
+		meOperations = new MeTemplate(getRestTemplate(), isAuthorized());
+		resolveOperations = new ResolveTemplate(clientId, getRestTemplate(),
+				isAuthorized());
+		tracksOperations = new TracksTemplate(clientId, getRestTemplate(),
+				isAuthorized());
+		playlistsOperations = new PlaylistsTemplate(clientId,
+				getRestTemplate(), isAuthorized(), resolveOperations);
 
 	}
 
 	// private helpers
-	private void initialize(String clientId,String accessToken) {
-		registerSoundCloudJsonModule(getRestTemplate());
-		getRestTemplate().setErrorHandler(new SoundCloudErrorHandler());
+	private void initialize(String clientId, String accessToken) {
 		// Wrap the request factory with a BufferingClientHttpRequestFactory so
 		// that the error handler can do repeat reads on the response.getBody()
-		
 		super.setRequestFactory(ClientHttpRequestFactorySelector
 				.bufferRequests(getRestTemplate().getRequestFactory()));
-		initSubApis(clientId,accessToken);
-	
-		
-	
-	
-	}
-	
-	
-	
-	
+		initSubApis(clientId, accessToken);
 
-	private void registerSoundCloudJsonModule(RestTemplate restTemplate2) {
+	}
+
+	@Override
+	protected void configureRestTemplate(RestTemplate restTemplate) {
+		restTemplate.setErrorHandler(new SoundCloudErrorHandler());
+	}
+
+	@Override
+	protected MappingJackson2HttpMessageConverter getJsonMessageConverter() {
+		MappingJackson2HttpMessageConverter converter = super
+				.getJsonMessageConverter();
 		objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new SoundCloudModule());
-		List<HttpMessageConverter<?>> converters = getRestTemplate()
-				.getMessageConverters();
-		for (HttpMessageConverter<?> converter : converters) {
-			if (converter instanceof MappingJacksonHttpMessageConverter) {
-				MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
-				jsonConverter.setObjectMapper(objectMapper);//  .setObjectMapper(objectMapper);
-			}
-		}
+		converter.setObjectMapper(objectMapper);
+		return converter;
 	}
- 
+
 	@Override
 	public UsersOperations usersOperations() {
 		return usersOperations;
 	}
-	
+
 	@Override
 	public ResolveOperations resolveOperations() {
 		return resolveOperations;
 	}
-	
 
 	@Override
 	public TracksOperations tracksOperations() {
 		return tracksOperations;
 	}
-	
+
 	@Override
 	public PlaylistsOperations playlistsOperations() {
 		return playlistsOperations;
 	}
-
 
 }

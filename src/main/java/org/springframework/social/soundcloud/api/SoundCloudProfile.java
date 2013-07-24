@@ -40,35 +40,19 @@ public class SoundCloudProfile implements Serializable {
 	private String city;
 	private String discogs_name;
 	private String myspace_name;
-	@JsonIgnore
 	private String website;
-	@JsonIgnore
 	private String website_title;
-	@JsonIgnore
 	private boolean online;
-	@JsonIgnore
 	private int track_count;
-	@JsonIgnore
 	private int playlist_count;
-	@JsonIgnore
 	private String plan;
-	@JsonIgnore
 	private int public_favorites_count;
-	@JsonIgnore
 	private int followers_count;
-	@JsonIgnore
 	private int followings_count;
-	@JsonIgnore
 	private String[] subscriptions;
-	@JsonIgnore
 	private int upload_seconds_left;
-	@JsonIgnore
-	private String[] quota;
-	@JsonIgnore
 	private int private_tracks_count;
-	@JsonIgnore
 	private int private_playlists_count;
-	@JsonIgnore
 	private boolean primary_email_confirmed;
 
 	public SoundCloudProfile() {}
@@ -263,14 +247,6 @@ public class SoundCloudProfile implements Serializable {
 
 	public void setUpload_seconds_left(int upload_seconds_left) {
 		this.upload_seconds_left = upload_seconds_left;
-	}
-
-	public String[] getQuota() {
-		return quota;
-	}
-	
-	public void setQuota(String[] quota) {
-		this.quota = quota;
 	}
 	
 	public int getPrivate_tracks_count() {
