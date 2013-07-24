@@ -1,0 +1,2 @@
+http\://www.springframework.org/schema/social/spring-social-soundcloud.xsd=org/springframework/social/soundcloud/config/xml/spring-social-soundcloud-1.1.xsd
+http\://www.springframework.org/schema/social/spring-social-soundcloud-1.1.xsd=org/springframework/social/soundcloud/config/xml/spring-social-soundcloud-1.1.xsd
