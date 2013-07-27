@@ -25,12 +25,6 @@ import org.springframework.social.soundcloud.connect.SoundCloudConnectionFactory
  */
 public class SoundCloudAuthenticationService extends OAuth2AuthenticationService<SoundCloud> {
 
-	/*
-	public SoundCloudAuthenticationService(String apiKey, String appSecret) {
-		super(new SoundCloudConnectionFactory(apiKey, appSecret));
-	}
-	*/
-
 	public SoundCloudAuthenticationService(String apiKey, String appSecret,String redirectUri) {
 		super(new SoundCloudConnectionFactory(apiKey, appSecret,redirectUri));
 	}

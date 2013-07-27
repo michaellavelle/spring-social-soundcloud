@@ -81,9 +81,9 @@ public class SoundCloudAdapterTest {
 		SoundCloudProfile soundCloudProfile = new SoundCloudProfile();
 		soundCloudProfile.setId("12345678");
 		soundCloudProfile.setUsername(userName);
-		soundCloudProfile.setAvatar_url("http://a1.sndcdn.com/images/default_avatar_large.png?8460df1");
-		soundCloudProfile.setPermalink_url("http://soundcloud.com/michaellavelle");
-		soundCloudProfile.setFull_name(fullName);
+		soundCloudProfile.setAvatarUrl("http://a1.sndcdn.com/images/default_avatar_large.png?8460df1");
+		soundCloudProfile.setPermalinkUrl("http://soundcloud.com/michaellavelle");
+		soundCloudProfile.setFullName(fullName);
 		soundCloudProfile.setUri("https://api.soundcloud.com/users/7031365");
 		soundCloudProfile.setCity("London");
 

@@ -50,4 +50,42 @@ abstract class SoundCloudProfileMixin {
 	@JsonProperty("playlist_count")
 	void setPlaylistCount(int playlistCount) {}
 	
+	@JsonProperty("followers_count")
+	void setFollowersCount(int followersCount) {}
+	
+	@JsonProperty("followings_count")
+	void setFollowingsCount(int followingsCount) {}
+	
+	@JsonProperty("permalink_url")
+	void setPermalinkUrl(String permalinkUrl) {}
+	
+	@JsonProperty("avatar_url")
+	void setAvatarUrl(String avatarUrl) {}
+	
+	@JsonProperty("full_name")
+	void setFullName(String fullName) {}
+	
+	@JsonProperty("discogs_name")
+	void setDiscogsName(String discogsName) {}
+	
+	@JsonProperty("website_title")
+	void setWebsiteTitle(String websiteTitle) {}
+	
+	@JsonProperty("myspace_name")
+	void setMyspaceName(String myspaceName) {}
+	
+	@JsonProperty("upload_seconds_left")
+	void setUploadSecondsLeft(int uploadSecondsLeft) {}
+	
+	@JsonProperty("private_tracks_count")
+	void setPrivateTracksCount(int privateTracksCount) {}
+	
+	
+	@JsonProperty("private_playlists_count")
+	void setPrivatePlaylistsCount(int privatePlaylistsCount) {}
+	
+	@JsonProperty("primary_email_confirmed")
+	void setPrimaryEmailConfirmed(boolean primaryEmailConfirmed) {}
+	
+	
 }

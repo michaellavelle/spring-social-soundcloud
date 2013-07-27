@@ -204,11 +204,11 @@ public class UserTemplateTest extends AbstractSoundCloudApiTest {
 		assertNotNull(userProfile);
 
 		assertEquals("mattslip",userProfile.getUsername());
-		assertEquals("Matt Slip",userProfile.getFull_name());
-		assertEquals("https://i1.sndcdn.com/avatars-000002866761-cj637a-large.jpg?cc23540",userProfile.getAvatar_url());
+		assertEquals("Matt Slip",userProfile.getFullName());
+		assertEquals("https://i1.sndcdn.com/avatars-000002866761-cj637a-large.jpg?cc23540",userProfile.getAvatarUrl());
 		assertEquals("London",userProfile.getCity());
 		assertEquals("https://api.soundcloud.com/users/3510549",userProfile.getUri());
-		assertEquals("http://soundcloud.com/mattslip",userProfile.getPermalink_url());
+		assertEquals("http://soundcloud.com/mattslip",userProfile.getPermalinkUrl());
 
 	
 		
@@ -258,11 +258,11 @@ public class UserTemplateTest extends AbstractSoundCloudApiTest {
 		assertNotNull(userProfile);
 
 		assertEquals("mattslip",userProfile.getUsername());
-		assertEquals("Matt Slip",userProfile.getFull_name());
-		assertEquals("https://i1.sndcdn.com/avatars-000002866761-cj637a-large.jpg?cc23540",userProfile.getAvatar_url());
+		assertEquals("Matt Slip",userProfile.getFullName());
+		assertEquals("https://i1.sndcdn.com/avatars-000002866761-cj637a-large.jpg?cc23540",userProfile.getAvatarUrl());
 		assertEquals("London",userProfile.getCity());
 		assertEquals("https://api.soundcloud.com/users/3510549",userProfile.getUri());
-		assertEquals("http://soundcloud.com/mattslip",userProfile.getPermalink_url());
+		assertEquals("http://soundcloud.com/mattslip",userProfile.getPermalinkUrl());
 
 	
 		
