@@ -215,6 +215,38 @@ public class UserTemplateTest extends AbstractSoundCloudApiTest {
 	}
 	
 	@Test
+	public void getUserProfile_WithSubscription() {
+
+		mockUnauthorizedServer
+				.expect(requestTo("https://api.soundcloud.com/resolve?url=http://soundcloud.com/mattslip&client_id=someApiKey"))
+				.andExpect(method(GET))
+				.andRespond(
+						withResponse(jsonResource("testdata/resolveuser"),
+								responseHeaders));
+		
+		mockUnauthorizedServer
+		.expect(requestTo("https://api.soundcloud.com/users/3510549?client_id=someApiKey"))
+		.andExpect(method(GET))
+		.andRespond(
+				withResponse(jsonResource("testdata/userprofilewithsubscription"),
+						responseHeaders));
+
+		SoundCloudProfile userProfile = unauthorizedSoundCloud.usersOperations().userOperations("mattslip").getUserProfile();
+		assertNotNull(userProfile);
+
+		assertEquals("mattslip",userProfile.getUsername());
+		assertEquals("Matt Slip",userProfile.getFullName());
+		assertEquals("https://i1.sndcdn.com/avatars-000002866761-cj637a-large.jpg?cc23540",userProfile.getAvatarUrl());
+		assertEquals("London",userProfile.getCity());
+		assertEquals("https://api.soundcloud.com/users/3510549",userProfile.getUri());
+		assertEquals("http://soundcloud.com/mattslip",userProfile.getPermalinkUrl());
+		assertEquals(1,userProfile.getSubscriptions().length);
+		assertEquals("Pro Plus",userProfile.getSubscriptions()[0].getProduct().getName());
+	
+		
+	}
+	
+	@Test
 	public void getPlaylists()
 	{
 		mockUnauthorizedServer

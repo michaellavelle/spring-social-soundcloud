@@ -47,7 +47,7 @@ public class SoundCloudProfile implements Serializable {
 	private int favoritesCount;
 	private int followersCount;
 	private int followingsCount;
-	private String[] subscriptions;
+	private Subscription[] subscriptions;
 	private int uploadSecondsLeft;
 	private int privateTracksCount;
 	private int privatePlaylistsCount;
@@ -153,7 +153,7 @@ public class SoundCloudProfile implements Serializable {
 	}
 
 	
-	public String[] getSubscriptions() {
+	public Subscription[] getSubscriptions() {
 		return subscriptions;
 	}
 	
@@ -273,7 +273,7 @@ public class SoundCloudProfile implements Serializable {
 		return serialVersionUID;
 	}
 
-	public void setSubscriptions(String[] subscriptions) {
+	public void setSubscriptions(Subscription[] subscriptions) {
 		this.subscriptions = subscriptions;
 	}
 
