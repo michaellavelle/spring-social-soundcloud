@@ -16,13 +16,14 @@
 package org.springframework.social.soundcloud.api.impl.json;
 
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.social.soundcloud.api.Activity;
 import org.springframework.social.soundcloud.api.Origin;
 import org.springframework.social.soundcloud.api.Playlist;
 import org.springframework.social.soundcloud.api.SoundCloudProfile;
 import org.springframework.social.soundcloud.api.Track;
+
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 
 /**

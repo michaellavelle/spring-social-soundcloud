@@ -23,7 +23,6 @@ import org.springframework.social.config.xml.ApiHelper;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.soundcloud.api.SoundCloud;
-import org.springframework.social.soundcloud.api.impl.SoundCloudTemplate;
 
 /**
  * Support class for JavaConfig and XML configuration support.

@@ -21,10 +21,10 @@ import java.util.Map;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.social.config.xml.AbstractProviderConfigBeanDefinitionParser;
+import org.springframework.social.security.provider.SocialAuthenticationService;
 import org.springframework.social.soundcloud.config.support.SoundCloudApiHelper;
 import org.springframework.social.soundcloud.connect.SoundCloudConnectionFactory;
 import org.springframework.social.soundcloud.security.SoundCloudAuthenticationService;
-import org.springframework.social.security.provider.SocialAuthenticationService;
 
 /**
  * Implementation of {@link AbstractConnectionFactoryBeanDefinitionParser} that creates a {@link SoundCloudConnectionFactory}.
