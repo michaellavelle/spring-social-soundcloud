@@ -19,125 +19,309 @@ package org.springframework.social.soundcloud.api;
  * See http://developers.soundcloud.com/docs/api/reference#tracks
  */
 public class Track extends TrackReference {
-	
-	private String title;
-	private String sharing;
-	private String embeddableBy;
-	private String purchaseUrl;
-	private String artworkUrl;
-	private String description;
-	private long duration;
-	private String genre;
+
+    private String title;
+    private String sharing;
+    private String embeddableBy;
+    private String purchaseUrl;
+    private String artworkUrl;
+    private String description;
+    private long duration;
+    private String genre;
     private boolean streamable;
     private boolean downloadable;
+    private String labelName;
+    private String labelId;
+    private String tagList;
+    private String permalink;
+    private String uri;
+    private String release;
+    private int releaseDay;
+    private int releaseMonth;
+    private int releaseYear;
+    private String license;
+    private String trackType;
+    private String downloadUrl;
+    private String videoUrl;
+    private String streamUrl;
+    private String bpm;
+    private String isrc;
+    private String keySignature;
+    private long commentCount;
+    private long downloadCount;
+    private long playbackCount;
+    private long favoritingsCount;
 
-	public Track(String permalinkUrl,String title,String id)
-	{
-		super(id,permalinkUrl);
-		this.title = title;
-	}
+    public Track(String permalinkUrl,String title,String id)
+    {
+        super(id,permalinkUrl);
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getLabelName() {
+        return labelName;
+    }
 
-	/**
-	 * public/private sharing
-	 * "public" or "private"
-	 */
-	public String getSharing() {
-		return sharing;
-	}
+    public void setLabelName(String labelName) {
+        this.labelName = labelName;
+    }
 
-	public void setSharing(String sharing) {
-		this.sharing = sharing;
-	}
+    public String getLabelId() {
+        return labelId;
+    }
 
-	public boolean isPublic() {
-		return "public".equals(sharing);
-	}
+    public void setLabelId(String labelId) {
+        this.labelId = labelId;
+    }
 
-	/**
-	 * who can embed this track or playlist
-	 * "all", "me", or "none"
-	 */
-	public String getEmbeddableBy() {
-		return embeddableBy;
-	}
+    public String getTagList() {
+        return tagList;
+    }
 
-	public void setEmbeddableBy(String embeddableBy) {
-		this.embeddableBy = embeddableBy;
-	}
+    public void setTagList(String tagList) {
+        this.tagList = tagList;
+    }
 
-	public boolean isEmbeddableByAll() {
-		return "all".equals(embeddableBy);
-	}
+    public String getPermalink() {
+        return permalink;
+    }
 
-	public boolean isEmbeddableByMe() {
-		return "me".equals(embeddableBy);
-	}
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
+    }
 
-	public String getPurchaseUrl() {
-		return purchaseUrl;
-	}
+    public String getUri() {
+        return uri;
+    }
 
-	public void setPurchaseUrl(String purchaseUrl) {
-		this.purchaseUrl = purchaseUrl;
-	}
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
 
-	public String getArtworkUrl() {
-		return artworkUrl;
-	}
+    public String getRelease() {
+        return release;
+    }
 
-	public void setArtworkUrl(String artworkUrl) {
-		this.artworkUrl = artworkUrl;
-	}
+    public void setRelease(String release) {
+        this.release = release;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getReleaseDay() {
+        return releaseDay;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setReleaseDay(int releaseDay) {
+        this.releaseDay = releaseDay;
+    }
 
-	public long getDuration() {
-		return duration;
-	}
+    public int getReleaseMonth() {
+        return releaseMonth;
+    }
 
-	public void setDuration(long duration) {
-		this.duration = duration;
-	}
+    public void setReleaseMonth(int releaseMonth) {
+        this.releaseMonth = releaseMonth;
+    }
 
-	public String getGenre() {
-		return genre;
-	}
+    public int getReleaseYear() {
+        return releaseYear;
+    }
 
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
 
-	public String getStreamUrl()
-	{
-		return "http://api.soundcloud.com/tracks/" + getId() + "/stream"; 
-	}
+    public String getLicense() {
+        return license;
+    }
 
-  public boolean isStreamable() {
-    return streamable;
-  }
+    public void setLicense(String license) {
+        this.license = license;
+    }
 
-  public void setStreamable(boolean streamable) {
-    this.streamable = streamable;
-  }
+    public String getTrackType() {
+        return trackType;
+    }
 
-  public boolean isDownloadable() {
-    return downloadable;
-  }
+    public void setTrackType(String trackType) {
+        this.trackType = trackType;
+    }
 
-  public void setDownloadable(boolean downloadable) {
-    this.downloadable = downloadable;
-  }
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getBpm() {
+        return bpm;
+    }
+
+    public void setBpm(String bpm) {
+        this.bpm = bpm;
+    }
+
+    public String getIsrc() {
+        return isrc;
+    }
+
+    public void setIsrc(String isrc) {
+        this.isrc = isrc;
+    }
+
+    public String getKeySignature() {
+        return keySignature;
+    }
+
+    public void setKeySignature(String keySignature) {
+        this.keySignature = keySignature;
+    }
+
+    public long getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(long commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public long getDownloadCount() {
+        return downloadCount;
+    }
+
+    public void setDownloadCount(long downloadCount) {
+        this.downloadCount = downloadCount;
+    }
+
+    public long getPlaybackCount() {
+        return playbackCount;
+    }
+
+    public void setPlaybackCount(long playbackCount) {
+        this.playbackCount = playbackCount;
+    }
+
+    public long getFavoritingsCount() {
+        return favoritingsCount;
+    }
+
+    public void setFavoritingsCount(long favoritingsCount) {
+        this.favoritingsCount = favoritingsCount;
+    }
+
+    public String getStreamUrl() {
+        return streamUrl;
+    }
+
+    public void setStreamUrl(String streamUrl) {
+        this.streamUrl = streamUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * public/private sharing
+     * "public" or "private"
+     */
+    public String getSharing() {
+        return sharing;
+    }
+
+    public void setSharing(String sharing) {
+        this.sharing = sharing;
+    }
+
+    public boolean isPublic() {
+        return "public".equals(sharing);
+    }
+
+    /**
+     * who can embed this track or playlist
+     * "all", "me", or "none"
+     */
+    public String getEmbeddableBy() {
+        return embeddableBy;
+    }
+
+    public void setEmbeddableBy(String embeddableBy) {
+        this.embeddableBy = embeddableBy;
+    }
+
+    public boolean isEmbeddableByAll() {
+        return "all".equals(embeddableBy);
+    }
+
+    public boolean isEmbeddableByMe() {
+        return "me".equals(embeddableBy);
+    }
+
+    public String getPurchaseUrl() {
+        return purchaseUrl;
+    }
+
+    public void setPurchaseUrl(String purchaseUrl) {
+        this.purchaseUrl = purchaseUrl;
+    }
+
+    public String getArtworkUrl() {
+        return artworkUrl;
+    }
+
+    public void setArtworkUrl(String artworkUrl) {
+        this.artworkUrl = artworkUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public boolean isStreamable() {
+        return streamable;
+    }
+
+    public void setStreamable(boolean streamable) {
+        this.streamable = streamable;
+    }
+
+    public boolean isDownloadable() {
+        return downloadable;
+    }
+
+    public void setDownloadable(boolean downloadable) {
+        this.downloadable = downloadable;
+    }
 }

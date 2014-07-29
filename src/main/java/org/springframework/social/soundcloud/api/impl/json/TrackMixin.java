@@ -20,20 +20,90 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-
-
 /**
- * Annotated mixin to add Jackson annotations to Track. 
+ * Annotated mixin to add Jackson annotations to Track.
+ *
  * @author Michael Lavelle
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 abstract class TrackMixin {
 
-	
-	@JsonCreator
-	TrackMixin(
-			@JsonProperty("permalink_url") String permalinkUrl, 
-			@JsonProperty("title") String title,@JsonProperty("id") String id) {} 
-	
-	
+    @JsonCreator
+    TrackMixin(
+            @JsonProperty("permalink_url") String permalinkUrl,
+            @JsonProperty("title") String title, @JsonProperty("id") String id) {
+    }
+
+    @JsonProperty("artwork_url")
+    void setArtworkUrl(String artworkUrl) {
+    }
+
+    @JsonProperty("label_name")
+    void setLabelName(String labelName) {
+    }
+
+    @JsonProperty("label_id")
+    void setLabelid(String labelid) {
+    }
+
+    @JsonProperty("tag_list")
+    void setTagList(String tagList) {
+    }
+
+    @JsonProperty("purchase_url")
+    void setPurchaseUrl(String purchaseUrl) {
+    }
+
+    @JsonProperty("embeddable_by")
+    void setEmbeddableBy(String embeddableBy) {
+    }
+
+    @JsonProperty("release_day")
+    void setReleaseDay(int releaseDay) {
+    }
+
+    @JsonProperty("release_month")
+    void setReleaseMonth(int releaseMonth) {
+    }
+
+    @JsonProperty("release_year")
+    void setReleaseYear(int releaseYear) {
+    }
+
+    @JsonProperty("track_type")
+    void setTrackType(String trackType) {
+    }
+
+    @JsonProperty("download_url")
+    void setDownloadUrl(String downloadUrl) {
+    }
+
+    @JsonProperty("video_url")
+    void setVideoUrl(String videoUrl) {
+    }
+
+    @JsonProperty("stream_url")
+    void setStreamUrl(String streamUrl) {
+    }
+
+    @JsonProperty("key_signature")
+    void setKeySignature(String keySignature) {
+    }
+
+    @JsonProperty("comment_count")
+    void setCommentCount(long commentCount) {
+    }
+
+    @JsonProperty("download_count")
+    void setDownloadCount(long downloadCount) {
+    }
+
+    @JsonProperty("playback_count")
+    void setPlaybackCount(long playbackCount) {
+    }
+
+    @JsonProperty("favoritings_count")
+    void setFavoritingsCount(long favoritingsCount) {
+    }
+
 }
