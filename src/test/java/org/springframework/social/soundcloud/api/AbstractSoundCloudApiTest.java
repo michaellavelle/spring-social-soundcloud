@@ -70,7 +70,7 @@ public abstract class AbstractSoundCloudApiTest {
 		assertEquals("A.N.D.Y. & Vicente : Traffic",track.getTitle());
 
 		assertEquals("http://soundcloud.com/a-n-d-y-music/a-n-d-y-vicente-traffic",track.getPermalinkUrl());
-		assertEquals("http://api.soundcloud.com/tracks/46562011/stream",track.getStreamUrl());
+		assertEquals("https://api.soundcloud.com/tracks/46562011/stream",track.getStreamUrl());
 	}
 
 }
