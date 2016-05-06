@@ -15,15 +15,35 @@
  */
 package org.springframework.social.soundcloud.api.impl.json;
 
-import java.util.ArrayList;
-
 import org.springframework.social.soundcloud.api.SoundCloudProfile;
 
-public class SoundCloudProfileList extends ArrayList<SoundCloudProfile> {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class SoundCloudProfileList implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+    public ArrayList<SoundCloudProfile> getCollection() {
+        return collection;
+    }
+
+    public void setCollection(ArrayList<SoundCloudProfile> collection) {
+        this.collection = collection;
+    }
+
+    private ArrayList<SoundCloudProfile> collection;
+
+    private String next_href;
+
+    public String getNext_href() {
+        return next_href;
+    }
+
+    public void setNext_href(String next_href) {
+        this.next_href = next_href;
+    }
 }
