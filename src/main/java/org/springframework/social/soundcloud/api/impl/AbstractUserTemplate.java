@@ -15,8 +15,6 @@
  */
 package org.springframework.social.soundcloud.api.impl;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +27,8 @@ import org.springframework.social.soundcloud.api.impl.json.PlaylistList;
 import org.springframework.social.soundcloud.api.impl.json.SoundCloudProfileList;
 import org.springframework.social.soundcloud.api.impl.json.TrackList;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOperations implements UserOperations {
 	
@@ -91,7 +91,8 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 	public Page<SoundCloudProfile> getFollowing(Pageable pageable) {
 
 		 SoundCloudProfile soundCloudProfile = getUserProfile();
-		 List<SoundCloudProfile> profiles = restTemplate.getForObject(getApiResourceUrl("/followings",pageable), SoundCloudProfileList.class);	 
+		 SoundCloudProfileList profileList = restTemplate.getForObject(getApiResourceUrl("/followings",pageable), SoundCloudProfileList.class);
+        List<SoundCloudProfile> profiles = profileList.getCollection();
 		 if (pageable == null)
 		 {
 			 // TODO
